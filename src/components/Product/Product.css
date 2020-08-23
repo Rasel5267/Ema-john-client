@@ -1,0 +1,39 @@
+.product{
+    display: flex;
+    border-bottom: 1px solid lightgray;
+}
+.img-area{
+    padding: 25px 0;
+}
+.img-area img{
+    transform: scale(1);
+    transition: .3s;
+}
+.img-area img:hover{
+    transform: scale(1.2);
+}
+.product-details{
+    margin:0 15px;
+}
+.product-name{
+    color: #0000ffab;
+}
+.add-btn{
+    width: 170px;
+    height: 30px;
+    font-size: 15px;
+    background: #fdbd46;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+.add-btn:hover{
+    background: #fda500;
+}
+.product-price-feature{
+    display: flex;
+}
+.product-price{
+    margin-right: 50px;
+}
