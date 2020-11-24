@@ -1,22 +1,46 @@
 import React from 'react';
-import logo from '../../images/logo.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import Product from '../Product/Product';
 import './Header.css';
+import SearchIcon from '@material-ui/icons/Search';
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import { Link } from 'react-router-dom';
+import { useStateValue } from '../../StateProvider';
+import {auth} from '../Login/firebase.config';
 
 const Header = () => {
+    const [{basket, user}, dispatch] = useStateValue();
+
+    const handleAuthentication = () => {
+        auth.signOut();
+    }
+
     return (
-        <div className ="header">
-            <img src={logo} alt=""/>
-            <nav>
-                <a href="/shop">Shop</a>
-                <a href="/review">Order Review</a>
-                <a href="/manage">Manage Inventory</a>
-            </nav>
-            <div className="search-bar">
-                <input type="text" placeholder='type here to search'/>
-                <span><FontAwesomeIcon icon={faShoppingCart} /> </span>
+        <div className="header">
+            <Link to="/"><img src='http://pngimg.com/uploads/amazon/amazon_PNG11.png' alt="logo" className="header__logo"/></Link>
+            <div className="header__search">
+                <input type="text" className="header__searchInput"/>
+                <SearchIcon className="header__searchIcon"/>
+            </div>
+            <div className="header__nav">
+                <Link className="link" to={!user && '/login'}>
+                    <div onClick={handleAuthentication} className="header__option">
+                        <span className="header__optionLineOne">Hello, guest</span>
+                        <span className="header__optionLineTwo">{user ? 'Sign Out' : 'Sign In'}</span>
+                    </div>
+                </Link>
+                <div className="header__option">
+                    <span className="header__optionLineOne">Returns</span>
+                    <span className="header__optionLineTwo">Orders</span>
+                </div>
+                <div className="header__option">
+                    <span className="header__optionLineOne">Your</span>
+                    <span className="header__optionLineTwo">Prime</span>
+                </div>
+                <Link className="link" to="/checkout">
+                    <div className="header__optionBasket">
+                        <ShoppingBasketIcon />
+                        <span className="header__optionLineTwo header__basketCount">{basket?.length}</span>
+                    </div>
+                </Link>
             </div>
         </div>
     );

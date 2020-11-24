@@ -1,30 +1,49 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import './Product.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import './Product.css';
+import { Link } from 'react-router-dom';
+import StarIcon from '@material-ui/icons/Star';
+import {useStateValue} from '../../StateProvider';
 
 const Product = (props) => {
-    const {img, name, seller,price,stock, star} = props.product;
+    const { img, name, price, stock, key, star } = props.product;
+    const [{basket, user}, dispatch] = useStateValue();
+    const handleAddProduct = () => {
+        dispatch({
+            type: 'ADD_TO_BASKET',
+            item: {
+                key: key,
+                img: img,
+                name: name,
+                price: price,
+                stock: stock,
+                star: star
+            }
+        })
+    }
     return (
-        <div className="product">
-            <div className="img-area">
-                <img src={img} alt=""/>
-            </div>
-            <div className="product-details">
-                <h4 className="product-name">{name}</h4>
-                <p>by: {seller}</p>
-                <div className="product-price-feature">
-                    <div className="product-price">
-                        <p>${price}</p>
-                        <p>only {stock} left in stock - order soon</p>
-                        <button onClick={() => props.handleAddProduct(props.product)} className='add-btn'> <FontAwesomeIcon icon={faShoppingCart} /> add to cart</button>
-                    </div>
-                    <div className="product-feature">
-                        <p>{star}</p>
-                        <h4>Features</h4>
-                    </div>
+        <div>
+            <h5><Link className='product__link' to={"/product/"+key}>{name}</Link></h5>
+            {
+                Array(star).fill().map((_, i) => (
+                    <StarIcon className="star" />
+                ))
+            }
+            <br/>
+            <span>${price}</span>
+            <p><small>Only {stock} left in stock - Order soon</small></p>
+            <img className="product__image mt-3" src={img} alt="" /> <br/>
+            { props.showAddToCart === true && 
+                <div className="cartBtn">
+                    <button 
+                        className="main-button mt-5" 
+                        onClick={handleAddProduct}
+                        > 
+                            <FontAwesomeIcon icon={faShoppingCart} /> add to cart
+                    </button>
                 </div>
-            </div>
+            }
         </div>
     );
 };

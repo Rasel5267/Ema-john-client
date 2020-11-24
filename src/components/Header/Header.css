@@ -1,36 +1,73 @@
-.header img{
-    height: 80px;
+.header {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background: #131921;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  color: #fff;
 }
-.header{
-    text-align: center;
+
+.link,
+.link:hover {
+  color: #fff;
+  text-decoration: none;
 }
-nav{
-    background: #000;
-    line-height: 34px;
-    font-size: 18px;
-    margin-top: 8px;
-    text-align: left ;
+
+.header__logo {
+  width: 100px;
+  object-fit: contain;
+  margin: 0 20px;
+  margin-top: 12px;
 }
-nav a{
-    color: #fff;
-    text-decoration: none;
-    padding: 5px;
-    margin-left: 30px;
+
+.header__search {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  border-radius: 24px;
 }
-nav a:hover{
-    background: gray;
+
+.header__searchInput {
+  height: 12px;
+  padding: 11px;
+  border: none;
+  width: 100%;
 }
-.search-bar{
-    background: #1b1b1b;
-    line-height: 50px;
+
+.header__searchIcon {
+  padding: 3px;
+  height: 22px !important;
+  background: #cd9042;
 }
-.search-bar input{
-    width: 70%;
-    outline: none;
-    font-size: 16px;
-    padding: 2px 5px;
+
+.header__optionLineOne {
+  font-size: 10px;
 }
-.search-bar span{
-    color: #fff;
-    margin-left: 8px;
+
+.header__optionLineTwo {
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.header__optionBasket {
+  display: flex;
+  align-items: center;
+}
+
+.header__basketCount {
+  margin: 0 10px;
+}
+
+.header__nav {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.header__option {
+  display: flex;
+  flex-direction: column;
+  margin: 0 10px;
+  color: #fff;
 }
