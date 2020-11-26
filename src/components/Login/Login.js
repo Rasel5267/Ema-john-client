@@ -42,12 +42,12 @@ function Login() {
       </div>
       <div className="row">
         <div className="login__container">
-          <h1>Sign-in</h1>
+          <h1 className="text-center">Sign-in</h1>
           <form>
             <h5>E-mail</h5>
-            <input type="email" value={email} onChange={e => setEmail(e.target.value)}/>
+            <input className="login__input" type="email" value={email} onChange={e => setEmail(e.target.value)}/>
             <h5>Password</h5>
-            <input type="password" value={password} onChange={e => setPassword(e.target.value)}/>
+            <input className="login__input" type="password" value={password} onChange={e => setPassword(e.target.value)}/>
             <button type="submit" onClick={signIn} className="login__signInBtn">Sign in</button>
           </form>
           <p>By signing-in you agree to the terms and conditions of use and sale. Please see our Privacy Policy, our Cookie Policy and our Interest-Base Ads Policy</p>

@@ -7,13 +7,13 @@ import StarIcon from '@material-ui/icons/Star';
 import {useStateValue} from '../../StateProvider';
 
 const Product = (props) => {
-    const { img, name, price, stock, key, star } = props.product;
+    const { img, name, price, stock, key, star, _id } = props.product;
     const [{basket, user}, dispatch] = useStateValue();
     const handleAddProduct = () => {
         dispatch({
             type: 'ADD_TO_BASKET',
             item: {
-                key: key,
+                id: _id,
                 img: img,
                 name: name,
                 price: price,

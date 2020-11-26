@@ -17,7 +17,7 @@ const Checkout = () => {
                         {
                             basket.map(item => (
                                 <CheckoutProduct 
-                                    id={item._id}
+                                    id={item.id}
                                     name={item.name}
                                     img={item.img}
                                     price={item.price}
